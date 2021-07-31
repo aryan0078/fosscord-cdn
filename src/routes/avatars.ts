@@ -30,7 +30,7 @@ router.post("/:user_id", multer.single("file"), async (req: Request, res: Respon
 	const type = await FileType.fromBuffer(buffer);
 	if (!type || !ALLOWED_MIME_TYPES.includes(type.mime)) throw new HTTPError("Invalid file type");
 	const path = `avatars/${user_id}/${id}`;
-	const endpoint = Config.get().cdn.endpoint || "http://localhost:3003";
+	const endpoint = Config.get().cdn.endpoint || "http://3.131.37.166:3003";
 
 	await storage.set(path, buffer);
 
